@@ -1,0 +1,367 @@
+/* @settings
+
+name: File Explorer
+id: file-explorer
+collapsed: true
+settings:
+    -
+        type: heading
+        title: Layout
+        level: 2
+    -
+        id: file-explorer-icon-size
+        title: Folder Icon Size (px)
+        type: variable-number-slider
+        format: 'px'
+        default: 17
+        min: 10
+        max: 30
+        step: 1
+
+    -
+        type: heading
+        title: Folder Icons
+        level: 2
+    -
+        id: pt-file-explorer-folder-icon
+        title: Enable Folder Icons
+        type: class-toggle
+        default: false
+    -
+        id: pt-file-explorer-folder-icon-color
+        title: Folder Icon Color (Preset)
+        type: class-select
+        allowEmpty: false
+        default: pt-file-explorer-folder-icon-default
+        options:
+            - { label: Default, value: pt-file-explorer-folder-icon-default }
+            - { label: Accent, value: pt-file-explorer-folder-icon-accent }
+            - { label: Accent on Open, value: pt-file-explorer-folder-icon-active }
+    -
+        id: file-explorer-icon-color-default
+        title: Default Icon Color
+        type: variable-themed-color
+        format: 'hex'
+        opacity: false
+        default-light: '#808080'
+        default-dark: '#9a9a9a'
+    -
+        id: file-explorer-icon-color-accent
+        title: Accent Icon Color
+        type: variable-themed-color
+        format: 'hex'
+        opacity: false
+        default-light: '#7c5cff'
+        default-dark: '#7c5cff'
+
+    -
+        type: heading
+        title: Hover
+        level: 2
+    -
+        id: pt-file-explorer-hover-bg
+        title: Enable Hover Background
+        type: class-toggle
+        default: true
+    -
+        id: file-explorer-hover-bg-color
+        title: Hover Background Color
+        type: variable-themed-color
+        format: 'hex'
+        opacity: false
+        default-light: '#7c5cff'
+        default-dark: '#7c5cff'
+    -
+        id: file-explorer-hover-tint
+        title: Hover Background Amount (%)
+        type: variable-number-slider
+        format: '%'
+        default: 15
+        min: 0
+        max: 100
+        step: 1
+    -
+        id: pt-file-explorer-hover-text
+        title: Enable Hover Title Color
+        type: class-toggle
+        default: false
+    -
+        id: file-explorer-hover-text-color
+        title: Hover Title Color
+        type: variable-themed-color
+        format: 'hex'
+        opacity: false
+        default-light: '#7c5cff'
+        default-dark: '#7c5cff'
+    -
+        id: pt-file-explorer-hover-icon
+        title: Enable Hover Icon Color
+        type: class-toggle
+        default: true
+    -
+        id: file-explorer-hover-icon-color
+        title: Hover Icon Color
+        type: variable-themed-color
+        format: 'hex'
+        opacity: false
+        default-light: '#7c5cff'
+        default-dark: '#7c5cff'
+
+    -
+        type: heading
+        title: Selected / Focused
+        level: 2
+    -
+        id: file-explorer-selected-icon-color
+        title: Selected Icon Color
+        type: variable-themed-color
+        format: 'hex'
+        opacity: false
+        default-light: '#7c5cff'
+        default-dark: '#7c5cff'
+    -
+        id: file-explorer-selected-text-color
+        title: Selected Title Color
+        type: variable-themed-color
+        format: 'hex'
+        opacity: false
+        default-light: '#7c5cff'
+        default-dark: '#7c5cff'
+
+    -
+        type: heading
+        title: Drag
+        level: 2
+    -
+        id: file-explorer-drag-bg-color
+        title: Drag Background Color
+        type: variable-themed-color
+        format: 'hex'
+        opacity: false
+        default-light: '#7c5cff'
+        default-dark: '#7c5cff'
+    -
+        id: file-explorer-drag-icon-color
+        title: Drag Icon Color
+        type: variable-themed-color
+        format: 'hex'
+        opacity: false
+        default-light: '#ffffff'
+        default-dark: '#ffffff'
+    -
+        id: file-explorer-drag-text-color
+        title: Drag Text Color
+        type: variable-themed-color
+        format: 'hex'
+        opacity: false
+        default-light: '#ffffff'
+        default-dark: '#ffffff'
+
+*/
+
+/* =========================================================
+   Folder Icon — base
+   ========================================================= */
+
+.pt-file-explorer-folder-icon
+.nav-folder > .nav-folder-title > .collapse-icon
+svg.svg-icon {
+  display: inline-flex;
+  width: var(--file-explorer-icon-size, 17px);
+  height: var(--file-explorer-icon-size, 17px);
+  flex-shrink: 0;
+  stroke-width: 0;
+  transform: rotate(0);
+  -webkit-mask-position: center;
+          mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  -webkit-mask-size: var(--file-explorer-icon-size, 17px);
+          mask-size: var(--file-explorer-icon-size, 17px);
+  background-color: var(--file-explorer-icon-color-default, var(--text-muted));
+}
+
+/* ---------- Open folder ---------- */
+
+.pt-file-explorer-folder-icon
+.nav-folder:not(.is-collapsed)
+> .nav-folder-title
+> .collapse-icon
+svg.svg-icon {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 14 1.45-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.55 6a2 2 0 0 1-1.94 1.5H4a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2h3.93a2 2 0 0 1 1.66.9l.82 1.2a2 2 0 0 0 1.66.9H18a2 2 0 0 1 2 2v2'%3E%3C/path%3E%3C/svg%3E");
+          mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 14 1.45-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.55 6a2 2 0 0 1-1.94 1.5H4a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2h3.93a2 2 0 0 1 1.66.9l.82 1.2a2 2 0 0 0 1.66.9H18a2 2 0 0 1 2 2v2'%3E%3C/path%3E%3C/svg%3E");
+}
+
+/* ---------- Closed folder ---------- */
+
+.pt-file-explorer-folder-icon
+.nav-folder.is-collapsed
+> .nav-folder-title
+> .collapse-icon
+svg.svg-icon {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z'%3E%3C/path%3E%3C/svg%3E");
+          mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z'%3E%3C/path%3E%3C/svg%3E");
+}
+
+/* =========================================================
+   Colors — presets (non-hover state)
+   ========================================================= */
+
+/* Default — every folder uses Default Icon Color */
+.pt-file-explorer-folder-icon.pt-file-explorer-folder-icon-default
+.nav-folder
+> .nav-folder-title
+> .collapse-icon
+svg.svg-icon {
+  background-color: var(--file-explorer-icon-color-default, var(--text-muted));
+}
+
+/* Accent — every folder uses Accent Icon Color */
+.pt-file-explorer-folder-icon.pt-file-explorer-folder-icon-accent
+.nav-folder
+> .nav-folder-title
+> .collapse-icon
+svg.svg-icon {
+  background-color: var(--file-explorer-icon-color-accent, var(--interactive-accent));
+}
+
+/* Active preset — open folders use Accent Icon Color */
+.pt-file-explorer-folder-icon.pt-file-explorer-folder-icon-active
+.nav-folder:not(.is-collapsed)
+> .nav-folder-title
+> .collapse-icon
+svg.svg-icon {
+  background-color: var(--file-explorer-icon-color-accent, var(--interactive-accent));
+}
+
+/* Active preset — closed folders use Default Icon Color (declared after so it wins ties) */
+.pt-file-explorer-folder-icon.pt-file-explorer-folder-icon-active
+.nav-folder.is-collapsed
+> .nav-folder-title
+> .collapse-icon
+svg.svg-icon {
+  background-color: var(--file-explorer-icon-color-default, var(--text-muted));
+}
+
+/* =========================================================
+   Hover — background (toggle)
+   ========================================================= */
+
+body.pt-file-explorer-hover-bg:not(.is-grabbing)
+.nav-folder-title:hover,
+body.pt-file-explorer-hover-bg:not(.is-grabbing)
+.nav-file-title:hover {
+  background-color: color-mix(
+    in srgb,
+    var(--file-explorer-hover-bg-color, var(--interactive-accent))
+      var(--file-explorer-hover-tint, 15%),
+    var(--background-primary)
+  ) !important;
+}
+
+/* =========================================================
+   Hover — title text (toggle, off by default)
+   ========================================================= */
+
+body.pt-file-explorer-hover-text:not(.is-grabbing)
+.nav-folder-title:hover
+.nav-folder-title-content,
+body.pt-file-explorer-hover-text:not(.is-grabbing)
+.nav-file-title:hover
+.nav-file-title-content {
+  color: var(--file-explorer-hover-text-color, var(--interactive-accent)) !important;
+}
+
+/* =========================================================
+   Hover — folder icon (toggle)
+   ========================================================= */
+
+body.pt-file-explorer-hover-icon:not(.is-grabbing)
+.nav-folder-title:hover
+> .collapse-icon
+svg.svg-icon {
+  background-color: var(--file-explorer-hover-icon-color, var(--interactive-accent)) !important;
+}
+
+/* =========================================================
+   Selected / focused folder
+   ========================================================= */
+
+body:not(.is-grabbing)
+.nav-folder-title.is-active
+> .collapse-icon
+svg.svg-icon,
+
+.workspace-leaf.mod-active
+.nav-folder.has-focus
+> .nav-folder-title
+> .collapse-icon
+svg.svg-icon {
+  background-color: var(--file-explorer-selected-icon-color, var(--nav-item-color-active)) !important;
+}
+
+body:not(.is-grabbing)
+.nav-folder-title.is-active
+.nav-folder-title-content,
+
+.workspace-leaf.mod-active
+.nav-folder.has-focus
+> .nav-folder-title
+.nav-folder-title-content {
+  color: var(--file-explorer-selected-text-color, var(--nav-item-color-active)) !important;
+}
+
+/* =========================================================
+   Active folder + hover
+   ========================================================= */
+
+body:not(.is-grabbing)
+.nav-folder-title.is-active:hover
+> .collapse-icon
+svg.svg-icon,
+
+.workspace-leaf.mod-active
+.nav-folder.has-focus
+> .nav-folder-title:hover
+> .collapse-icon
+svg.svg-icon {
+  background-color: var(--file-explorer-selected-icon-color, var(--nav-item-color-active)) !important;
+}
+
+/* =========================================================
+   Drag state
+   ========================================================= */
+
+body.is-grabbing
+.nav-folder-title.is-being-dragged,
+body.is-grabbing
+.nav-file-title.is-being-dragged {
+  background-color: var(--file-explorer-drag-bg-color, var(--interactive-accent)) !important;
+}
+
+body.is-grabbing
+.nav-folder-title.is-being-dragged
+> .collapse-icon
+svg.svg-icon,
+
+body.is-grabbing
+.nav-folder-title.is-being-dragged:hover
+> .collapse-icon
+svg.svg-icon,
+
+body.is-grabbing
+.nav-file-title.is-being-dragged
+> .collapse-icon
+svg.svg-icon {
+  background-color: var(--file-explorer-drag-icon-color, var(--text-on-accent)) !important;
+}
+
+body.is-grabbing
+.nav-folder-title.is-being-dragged
+.nav-folder-title-content,
+
+body.is-grabbing
+.nav-file-title.is-being-dragged
+.nav-file-title-content {
+  color: var(--file-explorer-drag-text-color, var(--text-on-accent)) !important;
+}
